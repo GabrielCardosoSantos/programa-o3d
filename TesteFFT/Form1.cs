@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace TesteFFT
         {
             InitializeComponent();
             graphics = pnlDrawing.CreateGraphics();
+            LerArq();
         }
 
 
@@ -34,7 +36,11 @@ namespace TesteFFT
             graphics.FillEllipse(sb, x, y, 10, 10);
         }
 
-
+        public void LerArq()
+        {
+            StreamReader reader = new StreamReader(File.OpenRead("samples.dct"));
+            Console.WriteLine(reader.ReadToEnd());
+        }
 
     }
 }
