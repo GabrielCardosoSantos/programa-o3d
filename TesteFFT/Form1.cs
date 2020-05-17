@@ -38,8 +38,14 @@ namespace TesteFFT
 
         public void LerArq()
         {
-            StreamReader reader = new StreamReader(File.OpenRead("samples.dct"));
-            Console.WriteLine(reader.ReadToEnd());
+            var reader = File.Open("samples.dct", FileMode.Open));
+            using (var binaryStream = new BinaryReader(reader))
+            {
+                for (var i = 0; i < arraysize; i++)
+                {
+                    Console.WriteLine(binaryStream.ReadInt32());
+                }
+            }
         }
 
     }
