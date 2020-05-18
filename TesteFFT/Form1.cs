@@ -86,9 +86,8 @@ namespace TesteFFT
             
             for (int i = 0; i < values.Count; ++i)
             {
-                double sum = 0f;
-                double s;
-                double n;
+                double s, n, sum = 0f;
+
                 if (i == 0) 
                     s = Math.Sqrt(0.5);
                 else 
