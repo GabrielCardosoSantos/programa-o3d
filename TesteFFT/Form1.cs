@@ -53,6 +53,7 @@ namespace TesteFFT
         private List<double> FFT(List<double> values)
         {
             List<double> valores = new List<double>();
+
             return valores;
         }
 
@@ -66,12 +67,14 @@ namespace TesteFFT
                 double s;
                 for (int k = 0; k < n; ++k)
                 {
-                    if (k == 0) s = Math.Sqrt(0.5);
-                    else s = 1.0;
-                    soma += s * Math.Cos(Math.PI * (i + 0.5) * k / n);
+                    if (k == 0)
+                        s = Math.Sqrt(0.5);
+                    else
+                        s = 1.0;
+                    soma += s * values[k] * Math.Cos(Math.PI * (i + 0.5) * k / n);
                 }
-
-                valores.Add(soma);
+                var v = soma * Math.Sqrt(2f / values.Count);
+                valores.Add(v);
             }
 
             return valores;
@@ -80,6 +83,25 @@ namespace TesteFFT
         private List<double> DCT(List<double> values)
         {
             List<double> valores = new List<double>();
+            
+            for (int i = 0; i < values.Count; ++i)
+            {
+                double sum = 0f;
+                double s;
+                double n;
+                if (i == 0) 
+                    s = Math.Sqrt(0.5);
+                else 
+                    s = 1.0;
+
+                for (int j = 0; j < values.Count; ++j)
+                    sum += s * values[j] * Math.Cos(Math.PI * (j + 0.5) * i / values.Count);
+
+                n = sum * Math.Sqrt(2f / values.Count);
+
+                valores.Add(n);
+            }
+
             return valores;
         }
 
@@ -104,35 +126,35 @@ namespace TesteFFT
         {
             base.OnPaint(e);
             graphOriginal.MontaGrafico();
-            graphOriginal.Plota(0, 0);
+            graphOriginal.Plota(true);
         }
 
         private void pnlDCT_Paint(object sender, PaintEventArgs e)
         {
             base.OnPaint(e);
             graphDCT.MontaGrafico();
-            graphDCT.Plota(0, 0);
+            graphDCT.Plota(false);
         }
 
         private void pnlIDCT_Paint(object sender, PaintEventArgs e)
         {
             base.OnPaint(e);
             graphIDCT.MontaGrafico();
-            graphIDCT.Plota(0, 0);
+            graphIDCT.Plota(true);
         }
 
         private void pnlFFT_Paint(object sender, PaintEventArgs e)
         {
             base.OnPaint(e);
             graphFFT.MontaGrafico();
-            graphFFT.Plota(0, 0);
+            graphFFT.Plota();
         }
 
         private void pnlInverseFFT_Paint(object sender, PaintEventArgs e)
         {
             base.OnPaint(e);
             graphIFFT.MontaGrafico();
-            graphIFFT.Plota(0, 0);
+            graphIFFT.Plota();
         }
 
         private void panel6_Paint(object sender, PaintEventArgs e)
@@ -163,7 +185,7 @@ namespace TesteFFT
             DrawLine(new Point(panel.Location.X, panel.Size.Height / 2), new Point(panel.Size.Width - 10, panel.Size.Height/2));
         }
 
-        public void Plota(int posX, int posY)
+        public void Plota(bool ligaPontos = true)
         {
             if (values.Count < 1)
                 return;
@@ -177,21 +199,22 @@ namespace TesteFFT
             else
                 escala = max_value;
 
-            var panel_X = panel.Location.X;
-            var panel_Y = panel.Location.Y;
-
             var inc = panel.Size.Width / values.Count;
-            var y_max = panel_Y / (escala * 2);
+            var y_max = panel.Size.Height / (escala * 2);
 
             for(int i = 0; i < values.Count; i++)
             {
-                pontos.Add(new Point(panel_X + (i * inc), Convert.ToInt32((y_max * values[i]) + panel.Size.Height / 2)));
+                pontos.Add(new Point(panel.Location.X + (i * inc), Convert.ToInt32((y_max * values[i]) + panel.Size.Height / 2)));
                 DrawPoint(pontos[i].X, pontos[i].Y);
             }
 
-            for(int i = 0; i < values.Count - 1; i++)
+
+            if (ligaPontos)
             {
-                DrawLine(pontos[i], pontos[i+1]);
+                for(int i = 0; i < values.Count - 1; i++)
+                {
+                    DrawLine(pontos[i], pontos[i+1]);
+                }
             }
         }
 
