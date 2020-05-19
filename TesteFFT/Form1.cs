@@ -53,7 +53,6 @@ namespace TesteFFT
         private List<double> FFT(List<double> values)
         {
             List<double> valores = new List<double>();
-
             return valores;
         }
 
@@ -192,14 +191,10 @@ namespace TesteFFT
             var max_value = values.Max();
             var min_value = values.Min();
 
-            double escala;
-            if (Math.Abs(min_value) > Math.Abs(max_value))
-                escala = min_value;
-            else
-                escala = max_value;
+            double escala = Math.Abs(min_value) > Math.Abs(max_value) ? min_value : max_value;
 
             var inc = panel.Size.Width / values.Count;
-            var y_max = panel.Size.Height / (escala * 2);
+            var y_max = (panel.Size.Height - panel.Location.Y) / (escala * 2);
 
             for(int i = 0; i < values.Count; i++)
             {
