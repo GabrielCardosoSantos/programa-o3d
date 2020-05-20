@@ -148,11 +148,11 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(152, 10);
+            this.label5.Location = new System.Drawing.Point(169, 10);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(64, 13);
+            this.label5.Size = new System.Drawing.Size(31, 13);
             this.label5.TabIndex = 0;
-            this.label5.Text = "Inverse FFT";
+            this.label5.Text = "IDFT";
             // 
             // pnlInverseFFT
             // 
@@ -183,11 +183,11 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(171, 10);
+            this.label4.Location = new System.Drawing.Point(170, 10);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(26, 13);
+            this.label4.Size = new System.Drawing.Size(28, 13);
             this.label4.TabIndex = 0;
-            this.label4.Text = "FFT";
+            this.label4.Text = "DFT";
             // 
             // pnlFFT
             // 

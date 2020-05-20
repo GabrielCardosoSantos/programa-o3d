@@ -25,9 +25,9 @@ namespace TesteFFT
             var algorithms = new Algorithms();
             graphOriginal = new Graph(pnlOriginal, values);
             graphDCT = new Graph(pnlDCT, algorithms.DCT(values));
-            graphFFT = new Graph(pnlFFT, algorithms.FFT(values));
+            graphFFT = new Graph(pnlFFT, algorithms.DFT(values));
             graphIDCT = new Graph(pnlIDCT, algorithms.IDCT(algorithms.DCT(values)));
-            graphIFFT = new Graph(pnlInverseFFT, algorithms.IFFT(algorithms.FFT(values)));
+            graphIFFT = new Graph(pnlInverseFFT, algorithms.IDFT(algorithms.DFT(values)));
         }
 
         public List<double> ConvertToDouble(List<short> values)
@@ -52,7 +52,7 @@ namespace TesteFFT
                 for (int i = 0; i < value; i++)
                     values.Add(binaryStream.ReadInt16());
             }
-
+            values.ForEach(n => Console.WriteLine(n));
             return values;
         }
 
