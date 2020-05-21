@@ -25,32 +25,71 @@ namespace TesteFFT
             return valores;
         }
 
-        public List<double> DFT(List<double> values)
+        public List<double> DFT(List<double> data)
         {
-            List<double> valores = new List<double>();
-            
-            List<double> cosDFT = new List<double>();
-            List<double> sinDFT = new List<double>();
-
-            for (int n = 0; n <= values.Count / 2; n++)
+            int n = data.Count;
+            int m = n;// I use m = n / 2d;
+            double[] real = new double[n];
+            double[] imag = new double[n];
+            List<double> result = new List<double>();
+            double pi_div = 2.0 * Math.PI / n;
+            for (int w = 0; w < m; w++)
             {
-                double cos = 0.0;
-                double sin = 0.0;
-
-                for (int i = 0; i < values.Count; i++)
+                double a = w * pi_div;
+                for (int t = 0; t < n; t++)
                 {
-                    cos += values[i] * Math.Cos(2 * Math.PI * n / values.Count * i);
-                    sin += values[i] * Math.Sin(2 * Math.PI * n / values.Count * i);
+                    real[w] += data[t] * Math.Cos(a * t);
+                    imag[w] += data[t] * Math.Sin(a * t);
                 }
-
-                cosDFT.Add(cos);
-                sinDFT.Add(sin);
+                result.Add(Math.Sqrt(real[w] * real[w] + imag[w] * imag[w]) / n);
             }
 
+            Console.WriteLine("Start----------");
 
-            //return new Tuple<double[], double[]>(cosDFT, sinDFT);
-            return sinDFT;
+            for (int i = 0; i < real.Length; i++)
+            {
+                Console.WriteLine(real[i]);
+            }
+
+            Console.WriteLine("----------");
+
+            for (int i = 0; i < imag.Length; i++)
+            {
+                Console.WriteLine(imag[i]);
+            }
+
+            Console.WriteLine("End----------");
+            return result;
         }
+
+
+
+        //public List<double> DFT(List<double> values)
+        //{
+        //    List<double> valores = new List<double>();
+            
+        //    List<double> cosDFT = new List<double>();
+        //    List<double> sinDFT = new List<double>();
+
+        //    for (int n = 0; n <= values.Count / 2; n++)
+        //    {
+        //        double cos = 0.0;
+        //        double sin = 0.0;
+
+        //        for (int i = 0; i < values.Count; i++)
+        //        {
+        //            cos += values[i] * Math.Cos(2 * Math.PI * n / values.Count * i);
+        //            sin += values[i] * Math.Sin(2 * Math.PI * n / values.Count * i);
+        //        }
+
+        //        cosDFT.Add(cos);
+        //        sinDFT.Add(sin);
+        //    }
+
+
+        //    //return new Tuple<double[], double[]>(cosDFT, sinDFT);
+        //    return sinDFT;
+        //}
 
         public List<double> IDCT(List<double> values)
         {

@@ -52,7 +52,9 @@ namespace TesteFFT
                 for (int i = 0; i < value; i++)
                     values.Add(binaryStream.ReadInt16());
             }
+            Console.WriteLine("Valores");
             values.ForEach(n => Console.WriteLine(n));
+            Console.WriteLine("------------");
             return values;
         }
 
