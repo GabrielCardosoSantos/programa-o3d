@@ -8,6 +8,7 @@ namespace TesteFFT
 {
     public class Algorithms
     {
+        //
         List<double> cosList = new List<double>();
         List<double> sinList = new List<double>();
 

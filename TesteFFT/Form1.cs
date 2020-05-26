@@ -42,17 +42,30 @@ namespace TesteFFT
 
         public List<short> LerArq()
         {
-            var reader = File.Open("samples.dct", FileMode.Open);
-            List<short> values = new List<short>();
-
-            using (var binaryStream = new BinaryReader(reader))
+            try
             {
-                uint value = binaryStream.ReadUInt32();
+                var reader = File.Open("samples.dct", FileMode.Open);
+            
+                List<short> values = new List<short>();
 
-                for (int i = 0; i < value; i++)
-                    values.Add(binaryStream.ReadInt16());
+                using (var binaryStream = new BinaryReader(reader))
+                {
+                    uint value = binaryStream.ReadUInt32();
+
+                    for (int i = 0; i < value; i++)
+                        values.Add(binaryStream.ReadInt16());
+                }
+                return values;
+
+            }catch(Exception)
+            {
+                return (new List<short>() { 0, 12, 30, - 21,
+                    - 75, - 88, - 65, - 30, - 6, 0, - 11,
+                    - 32, - 53, - 68, - 72, - 65, - 49,
+                    - 25, 3, 31, 56, 76, 90, 96, 96, 89, 78, 62, 44,
+                    25, 5, - 13 });
             }
-            return values;
+            
         }
 
         private void pnlOriginal_Paint(object sender, PaintEventArgs e)
