@@ -69,7 +69,7 @@ namespace TesteFFT
         {
             base.OnPaint(e);
             graphDCT.MontaGrafico();
-            graphDCT.Plota(false);
+            graphDCT.Plota(true);
         }
 
         private void pnlIDCT_Paint(object sender, PaintEventArgs e)
