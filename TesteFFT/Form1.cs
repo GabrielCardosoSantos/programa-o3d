@@ -52,50 +52,48 @@ namespace TesteFFT
                 for (int i = 0; i < value; i++)
                     values.Add(binaryStream.ReadInt16());
             }
-            Console.WriteLine("Valores");
-            values.ForEach(n => Console.WriteLine(n));
-            Console.WriteLine("------------");
             return values;
         }
 
         private void pnlOriginal_Paint(object sender, PaintEventArgs e)
         {
             base.OnPaint(e);
-            graphOriginal.MontaGrafico();
-            graphOriginal.Plota(true);
+            GraphFunc(graphOriginal);
         }
 
         private void pnlDCT_Paint(object sender, PaintEventArgs e)
         {
             base.OnPaint(e);
-            graphDCT.MontaGrafico();
-            graphDCT.Plota(true);
+            GraphFunc(graphDCT);
         }
 
         private void pnlIDCT_Paint(object sender, PaintEventArgs e)
         {
             base.OnPaint(e);
-            graphIDCT.MontaGrafico();
-            graphIDCT.Plota(true);
+            GraphFunc(graphIDCT);
         }
 
         private void pnlFFT_Paint(object sender, PaintEventArgs e)
         {
             base.OnPaint(e);
-            graphFFT.MontaGrafico();
-            graphFFT.Plota();
+            GraphFunc(graphFFT);
         }
 
         private void pnlInverseFFT_Paint(object sender, PaintEventArgs e)
         {
             base.OnPaint(e);
-            graphIFFT.MontaGrafico();
-            graphIFFT.Plota();
+            GraphFunc(graphIFFT);
         }
 
         private void panel6_Paint(object sender, PaintEventArgs e)
         {
             base.OnPaint(e);
+        }
+
+        private void GraphFunc(Graph graph, bool lines = true)
+        {
+            graph.MontaGrafico();
+            graph.Plota(lines);
         }
     }
 

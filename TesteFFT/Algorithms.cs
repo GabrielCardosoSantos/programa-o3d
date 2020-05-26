@@ -8,27 +8,24 @@ namespace TesteFFT
 {
     public class Algorithms
     {
-
+        List<double> cosList = new List<double>();
+        List<double> sinList = new List<double>();
 
         public List<double> IDFT(List<double> values)
         {
-            List<double> valores = new List<double>();
-            
-            for (int n = 0; n < values.Count; n++)
+            double[] valores = new double[values.Count];
+
+            for (int n = 0; n <= values.Count; n++)
             {
-                double saida = 0;
                 for (int i = 0; i < values.Count; i++)
                 {
-                    saida = values[i] + Math.Sin(2 * Math.PI * n / values.Count * i) * values[n];
-                    //valores.Add(Math.Cos(2 * Math.PI * n / values.Count * i) * values[n]);
-                    //output[i] += Math.Sin(2 * Math.PI * n / len * i) * sin[n];
+                    valores[i] += Math.Cos(2 * Math.PI * n / values.Count * i) * cosList[n] + Math.Sin(2 * Math.PI * n / values.Count * i) * sinList[n];
                 }
-                valores.Add(saida);
             }
-            return valores;
-        }
 
-       
+            return (new List<double>(valores));
+        }
+                      
         public List<double> DFT(List<double> values)
         {
             List<double> valores = new List<double>();
@@ -44,6 +41,8 @@ namespace TesteFFT
                     sin += values[i] * Math.Sin(2 * Math.PI * n / values.Count * i);
                 }
 
+                cosList.Add(cos);
+                sinList.Add(sin);
                 valores.Add(cos - sin);
             }
 
