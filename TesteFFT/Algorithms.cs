@@ -47,8 +47,11 @@ namespace TesteFFT
                     sin += values[i] * Math.Sin(2 * Math.PI * n / values.Count * i);
                 }
 
-                cosList.Add(cos);
-                sinList.Add(sin);
+                //cosList.Add(cos);
+                //sinList.Add(sin);
+
+                cosList.Add(1f / values.Count * cos);
+                sinList.Add(1f / values.Count * sin);
             }
 
             return cosList;
