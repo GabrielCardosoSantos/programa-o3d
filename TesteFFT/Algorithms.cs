@@ -8,29 +8,35 @@ namespace TesteFFT
 {
     public class Algorithms
     {
+        //
         List<double> cosList = new List<double>();
         List<double> sinList = new List<double>();
 
         public List<double> IDFT(List<double> values)
         {
-            double[] retornos = new double[values.Count];
-
-            for (int n = 0; n <= values.Count; n++)
+            double[] valores = new double[values.Count];
+            
+            for (int n = 0; n < values.Count; n++)
             {
                 for (int i = 0; i < values.Count; i++)
                 {
-                    retornos[i] += Math.Cos(2 * Math.PI * n / values.Count * i) * cosList[n] + Math.Sin(2 * Math.PI * n / values.Count * i) * sinList[n];
+                    valores[i] += Math.Cos(2 * Math.PI * n / values.Count * i) * cosList[n] + Math.Sin(2 * Math.PI * n / values.Count * i) * sinList[n];
                 }
             }
 
-            return (new List<double>(retornos));
+            return (new List<double>(valores));
         }
                       
         public List<double> DFT(List<double> values)
         {
-            List<double> retornos = new List<double>();
 
-            for (int n = 0; n <= values.Count / 2; n++)
+            if (cosList.Count > 0)
+            {
+                cosList.Clear();
+                sinList.Clear();
+            }
+            
+            for (int n = 0; n < values.Count; n++)
             {
                 double cos = 0.0;
                 double sin = 0.0;
@@ -43,15 +49,14 @@ namespace TesteFFT
 
                 cosList.Add(cos);
                 sinList.Add(sin);
-                retornos.Add(cos - sin);
             }
 
-            return retornos;
+            return cosList;
         }
 
         public List<double> IDCT(List<double> values)
         {
-            List<double> retornos = new List<double>();
+            List<double> valores = new List<double>();
             int n = values.Count;
             for (int i = 0; i < n; ++i)
             {
@@ -66,15 +71,15 @@ namespace TesteFFT
                     soma += s * values[k] * Math.Cos(Math.PI * (i + 0.5) * k / n);
                 }
                 var v = soma * Math.Sqrt(2f / values.Count);
-                retornos.Add(v);
+                valores.Add(v);
             }
 
-            return retornos;
+            return valores;
         }
 
         public List<double> DCT(List<double> values)
         {
-            List<double> retornos = new List<double>();
+            List<double> valores = new List<double>();
 
             for (int i = 0; i < values.Count; ++i)
             {
@@ -90,10 +95,10 @@ namespace TesteFFT
 
                 n = sum * Math.Sqrt(2f / values.Count);
 
-                retornos.Add(n);
+                valores.Add(n);
             }
 
-            return retornos;
+            return valores;
         }
 
 
