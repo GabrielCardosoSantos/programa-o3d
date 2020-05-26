@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // As informações gerais sobre um assembly são controladas por
-// conjunto de atributos. Altere estes valores de atributo para modificar as informações
+// conjunto de atributos. Altere estes retornos de atributo para modificar as informações
 // associadas a um assembly.
 [assembly: AssemblyTitle("TesteFFT")]
 [assembly: AssemblyDescription("")]
@@ -22,14 +22,14 @@ using System.Runtime.InteropServices;
 // O GUID a seguir será destinado à ID de typelib se este projeto for exposto para COM
 [assembly: Guid("2e394471-9078-45c8-bd70-95d7657e2a9b")]
 
-// As informações da versão de um assembly consistem nos quatro valores a seguir:
+// As informações da versão de um assembly consistem nos quatro retornos a seguir:
 //
 //      Versão Principal
 //      Versão Secundária 
 //      Número da Versão
 //      Revisão
 //
-// É possível especificar todos os valores ou usar como padrão os Números de Build e da Revisão
+// É possível especificar todos os retornos ou usar como padrão os Números de Build e da Revisão
 // usando o "*" como mostrado abaixo:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
