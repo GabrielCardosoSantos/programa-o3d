@@ -23,10 +23,7 @@ namespace TesteFFT
                     valores[i] += Math.Cos(2 * Math.PI * n / values.Count * i) * cosList[n] - Math.Sin(2 * Math.PI * n / values.Count * i) * sinList[n];
                 }
             }
-
-            foreach (var x in valores)
-                Console.Write(x + ", ");
-
+            
             return (new List<double>(valores));
         }
                       
