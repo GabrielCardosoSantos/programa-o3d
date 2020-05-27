@@ -20,9 +20,12 @@ namespace TesteFFT
             {
                 for (int i = 0; i < values.Count; i++)
                 {
-                    valores[i] += Math.Cos(2 * Math.PI * n / values.Count * i) * cosList[n] + Math.Sin(2 * Math.PI * n / values.Count * i) * sinList[n];
+                    valores[i] += Math.Cos(2 * Math.PI * n / values.Count * i) * cosList[n] - Math.Sin(2 * Math.PI * n / values.Count * i) * sinList[n];
                 }
             }
+
+            foreach (var x in valores)
+                Console.Write(x + ", ");
 
             return (new List<double>(valores));
         }
@@ -44,7 +47,7 @@ namespace TesteFFT
                 for (int i = 0; i < values.Count; i++)
                 {
                     cos += values[i] * Math.Cos(2 * Math.PI * n / values.Count * i);
-                    sin += values[i] * Math.Sin(2 * Math.PI * n / values.Count * i);
+                    sin -= values[i] * Math.Sin(2 * Math.PI * n / values.Count * i);
                 }
 
                 //cosList.Add(cos);
