@@ -26,7 +26,34 @@ namespace TesteFFT
             
             return (new List<double>(valores));
         }
-                      
+
+
+        public List<Tuple<float, float, float, float, float>> dft_epycicles(List<double> x)
+        {
+            List<Tuple<float, float, float, float, float>> X = new List<Tuple<float, float, float, float, float>>();
+            int N = x.Count;
+            for (int k = 0; k < N; k++)
+            {
+                double re = 0;
+                double im = 0;
+                for (int n = 0; n < N; n++)
+                {
+                    double phi = (Math.PI * 2 * k * n) / N;
+                    re += x[n] * Math.Cos(phi);
+                    im -= x[n] * Math.Sin(phi);
+                }
+                re = re / N;
+                im = im / N;
+
+                double freq = k;
+                double amp = Math.Sqrt(re * re + im * im);
+                double phase = Math.Atan2(im, re);
+
+                X.Add(new Tuple<float, float, float, float, float>(Convert.ToSingle(re), Convert.ToSingle(im), Convert.ToSingle(freq), Convert.ToSingle(amp), Convert.ToSingle(phase)));
+            }
+            return X;
+        }
+
         public List<double> DFT(List<double> values)
         {
 
@@ -44,14 +71,14 @@ namespace TesteFFT
                 for (int i = 0; i < values.Count; i++)
                 {
                     cos += values[i] * Math.Cos(2 * Math.PI * n / values.Count * i);
-                    sin -= values[i] * Math.Sin(2 * Math.PI * n / values.Count * i);
+                    sin += values[i] * Math.Sin(2 * Math.PI * n / values.Count * i);
                 }
 
                 //cosList.Add(cos);
                 //sinList.Add(sin);
 
                 cosList.Add(1f / values.Count * cos);
-                sinList.Add(1f / values.Count * sin);
+                sinList.Add(-1f / values.Count * sin);
             }
 
             return cosList;

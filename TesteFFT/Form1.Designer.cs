@@ -32,7 +32,7 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.label6 = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
+            this.pnlDrawning = new System.Windows.Forms.Panel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.pnlInverseFFT = new System.Windows.Forms.Panel();
@@ -98,7 +98,7 @@
             this.tableLayoutPanel10.ColumnCount = 1;
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel10.Controls.Add(this.label6, 0, 0);
-            this.tableLayoutPanel10.Controls.Add(this.panel6, 0, 1);
+            this.tableLayoutPanel10.Controls.Add(this.pnlDrawning, 0, 1);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel10.Location = new System.Drawing.Point(753, 353);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
@@ -119,15 +119,15 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "Outro";
             // 
-            // panel6
+            // pnlDrawning
             // 
-            this.panel6.BackColor = System.Drawing.SystemColors.Window;
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(3, 37);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(363, 304);
-            this.panel6.TabIndex = 1;
-            this.panel6.Paint += new System.Windows.Forms.PaintEventHandler(this.panel6_Paint);
+            this.pnlDrawning.BackColor = System.Drawing.SystemColors.Window;
+            this.pnlDrawning.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlDrawning.Location = new System.Drawing.Point(3, 37);
+            this.pnlDrawning.Name = "pnlDrawning";
+            this.pnlDrawning.Size = new System.Drawing.Size(363, 304);
+            this.pnlDrawning.TabIndex = 1;
+            this.pnlDrawning.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlDrawning_Paint);
             // 
             // tableLayoutPanel9
             // 
@@ -345,7 +345,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel pnlDrawning;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel pnlInverseFFT;

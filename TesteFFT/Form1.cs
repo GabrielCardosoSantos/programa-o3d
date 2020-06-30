@@ -98,9 +98,9 @@ namespace TesteFFT
             GraphFunc(graphIFFT);
         }
 
-        private void panel6_Paint(object sender, PaintEventArgs e)
+        private void pnlDrawning_Paint(object sender, PaintEventArgs e)
         {
-            base.OnPaint(e);
+            
         }
 
         private void GraphFunc(Graph graph, bool lines = true)
@@ -108,6 +108,7 @@ namespace TesteFFT
             graph.MontaGrafico();
             graph.Plota(lines);
         }
+
     }
 
 }
