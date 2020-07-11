@@ -41,6 +41,8 @@ namespace TesteFFT
 
         public Vector2 epiCycles(Graphics graphics, double x, double y, float rotation, List<Tuple<float, float, float, float, float>> fourier)
         {
+            //object o = new object();
+            //Parallel.ForEach(fourier, (item) =>
             foreach(var item in fourier)
             {
                 double prevx = x;
@@ -51,21 +53,25 @@ namespace TesteFFT
                 x += amp * Math.Cos(freq * time + phase + rotation);
                 y += amp * Math.Sin(freq * time + phase + rotation);
 
-                Pen pen = new Pen(Color.Black);
-                graphics.TranslateTransform(-(float)amp, -(float)amp);
-                graphics.DrawEllipse(pen, (float)prevx, (float) prevy, amp * 2, amp * 2);
-                graphics.TranslateTransform((float)amp, (float)amp);
-                graphics.DrawLine(pen, (float)prevx, (float)prevy, (float)x, (float)y);
-            }
+                //lock (o)
+                //{
+                    using (Pen pen = new Pen(Color.Black))
+                    {
+                        graphics.TranslateTransform(-(float)amp, -(float)amp);
+                        graphics.DrawEllipse(pen, (float)prevx, (float)prevy, amp * 2, amp * 2);
+                        graphics.TranslateTransform((float)amp, (float)amp);
+                        graphics.DrawLine(pen, (float)prevx, (float)prevy, (float)x, (float)y);
+                    }
+                //}                
+            };
+
             return new Vector2(Convert.ToSingle(x), Convert.ToSingle(y));
         }
 
         private void frmDrawing_Paint(object sender, PaintEventArgs e)
         {
-            
             var graphics = e.Graphics;
-
-            graphics.SmoothingMode = SmoothingMode.HighQuality;
+            graphics.SmoothingMode = SmoothingMode.HighSpeed;
 
             var vx = epiCycles(graphics, this.Width / 2, 200, 0, x_dft);
             var vy = epiCycles(graphics, 150, this.Height / 2 + 100, (float) Math.PI / 2, y_dft);
@@ -73,17 +79,22 @@ namespace TesteFFT
 
             desenho.Insert(0, v);
 
-            Pen pen = new Pen(Color.Black);
-            graphics.DrawLine(pen, vx.X, vx.Y, v.X, v.Y);
-            graphics.DrawLine(pen, vy.X, vy.Y, v.X, v.Y);
+            using (Pen pen = new Pen(Color.Black))
+            {
+                graphics.DrawLine(pen, vx.X, vx.Y, v.X, v.Y);
+                graphics.DrawLine(pen, vy.X, vy.Y, v.X, v.Y);
+            }
 
             if (desenho.Count > 1)
             {
                 var path = new GraphicsPath();
                 var points = this.desenho.ToArray();
                 path.AddCurve(points);
-                Pen pen1 = new Pen(Color.Red, 2);
-                graphics.DrawPath(pen1, path);
+
+                using (Pen pen1 = new Pen(Color.Red, 2))
+                {
+                    graphics.DrawPath(pen1, path);
+                }
             }
         
             time += (float) ((2 * Math.PI) / this.train.Values.Count);
