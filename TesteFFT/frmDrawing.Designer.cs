@@ -28,49 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.pnlDrawing = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.components = new System.ComponentModel.Container();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // timer1
             // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.pnlDrawing, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1078, 590);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // pnlDrawing
-            // 
-            this.pnlDrawing.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDrawing.Location = new System.Drawing.Point(3, 3);
-            this.pnlDrawing.Name = "pnlDrawing";
-            this.pnlDrawing.Size = new System.Drawing.Size(1072, 584);
-            this.pnlDrawing.TabIndex = 0;
-            this.pnlDrawing.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlDrawing_Paint);
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // frmDrawing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1078, 590);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.ClientSize = new System.Drawing.Size(1082, 729);
+            this.DoubleBuffered = true;
             this.Name = "frmDrawing";
             this.Text = "frmDrawing";
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmDrawing_Paint);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel pnlDrawing;
+        private System.Windows.Forms.Timer timer1;
     }
 }

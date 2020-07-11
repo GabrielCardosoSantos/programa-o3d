@@ -51,7 +51,7 @@ namespace TesteFFT
 
                 X.Add(new Tuple<float, float, float, float, float>(Convert.ToSingle(re), Convert.ToSingle(im), Convert.ToSingle(freq), Convert.ToSingle(amp), Convert.ToSingle(phase)));
             }
-            return X;
+            return X.OrderByDescending(n => n.Item4).ToList();
         }
 
         public List<double> DFT(List<double> values)

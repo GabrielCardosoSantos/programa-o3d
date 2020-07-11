@@ -9,7 +9,7 @@ namespace TesteFFT
 {
     public class codingTrain
     {
-        public List<Vector2> tuples;
+        public List<Vector2> Values;
 
 
         public codingTrain()
@@ -19,12 +19,12 @@ namespace TesteFFT
 
         private void Show()
         {
-            tuples.ForEach(n => Console.WriteLine("X: " + n.X + "Y: " + n.Y));
+            Values.ForEach(n => Console.WriteLine("X: " + n.X + "Y: " + n.Y));
         }
 
         private void Start()
         {
-            tuples = new List<Vector2>()
+            Values = new List<Vector2>()
             {
                 new Vector2(-75.23920093800275f, -9.276916512631997f),
                 new Vector2(-73.99534065831229f, -9.582732689485699f),
