@@ -14,7 +14,7 @@ namespace TesteFFT
 
         public codingTrain()
         {
-            StartWith700();
+            StartWith500();
         }
 
         private void Show()
@@ -22,7 +22,7 @@ namespace TesteFFT
             Values.ForEach(n => Console.WriteLine("X: " + n.X + "Y: " + n.Y));
         }
 
-        public void StartWith700()
+        public void StartWith500()
         {
             Values = new List<Vector2>()
             {

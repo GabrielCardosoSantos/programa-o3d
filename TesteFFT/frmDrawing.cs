@@ -100,11 +100,11 @@ namespace TesteFFT
                 }
             }
         
-            time += (float) ((2 * Math.PI) / this.train.Values.Count);
+            time += (float) ((2 * Math.PI) / y_dft.Count);
             if (time > 2 * Math.PI)
             {
                 time = 0;
-                desenho.Clear();
+                //desenho.Clear();
             }
                   
         }
