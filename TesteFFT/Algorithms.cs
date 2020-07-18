@@ -28,9 +28,9 @@ namespace TesteFFT
         }
 
 
-        public List<Tuple<float, float, float, float, float>> dft_epycicles(List<double> x)
+        public List<Epicycle> dft_epycicles(List<double> x)
         {
-            List<Tuple<float, float, float, float, float>> X = new List<Tuple<float, float, float, float, float>>();
+            List<Epicycle> X = new List<Epicycle>();
             int N = x.Count;
             for (int k = 0; k < N; k++)
             {
@@ -49,9 +49,9 @@ namespace TesteFFT
                 double amp = Math.Sqrt(re * re + im * im);
                 double phase = Math.Atan2(im, re);
 
-                X.Add(new Tuple<float, float, float, float, float>(Convert.ToSingle(re), Convert.ToSingle(im), Convert.ToSingle(freq), Convert.ToSingle(amp), Convert.ToSingle(phase)));
+                X.Add(new Epicycle(Convert.ToSingle(re), Convert.ToSingle(im), Convert.ToSingle(freq), Convert.ToSingle(amp), Convert.ToSingle(phase)));
             }
-            return X.OrderByDescending(n => n.Item4).ToList();
+            return X.OrderByDescending(n => n.amp).ToList();
         }
 
         public List<double> DFT(List<double> values)

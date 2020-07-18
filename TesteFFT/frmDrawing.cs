@@ -18,9 +18,11 @@ namespace TesteFFT
         public Algorithms alg;
 
         float time = 0f;
-        List<Tuple<float, float, float, float, float>> x_dft;
-        List<Tuple<float, float, float, float, float>> y_dft;
+
+        List<Epicycle> x_dft;
+        List<Epicycle> y_dft;
         List<PointF> desenho;
+
         public frmDrawing()
         {
             InitializeComponent();
@@ -30,6 +32,7 @@ namespace TesteFFT
 
             List<double> x = new List<double>();
             List<double> y = new List<double>();
+
             train.Values.ForEach(n => {
                 x.Add(n.X);
                 y.Add(n.Y);                
@@ -39,7 +42,7 @@ namespace TesteFFT
             y_dft = alg.dft_epycicles(y);
         }
 
-        public Vector2 epiCycles(Graphics graphics, double x, double y, float rotation, List<Tuple<float, float, float, float, float>> fourier)
+        public Vector2 epiCycles(Graphics graphics, double x, double y, float rotation, List<Epicycle> fourier)
         {
             //object o = new object();
             //Parallel.ForEach(fourier, (item) =>
@@ -47,9 +50,9 @@ namespace TesteFFT
             {
                 double prevx = x;
                 double prevy = y;
-                float freq = item.Item3;
-                float amp = item.Item4;
-                float phase = item.Item5;
+                double freq = item.freq;
+                double amp = item.amp;
+                double phase = item.phase;
                 x += amp * Math.Cos(freq * time + phase + rotation);
                 y += amp * Math.Sin(freq * time + phase + rotation);
 
@@ -58,7 +61,7 @@ namespace TesteFFT
                     using (Pen pen = new Pen(Color.Black))
                     {
                         graphics.TranslateTransform(-(float)amp, -(float)amp);
-                        graphics.DrawEllipse(pen, (float)prevx, (float)prevy, amp * 2, amp * 2);
+                        graphics.DrawEllipse(pen, (float)prevx, (float)prevy, (float) (amp * 2), (float) (amp * 2));
                         graphics.TranslateTransform((float)amp, (float)amp);
                         graphics.DrawLine(pen, (float)prevx, (float)prevy, (float)x, (float)y);
                     }
