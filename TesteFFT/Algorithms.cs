@@ -34,23 +34,45 @@ namespace TesteFFT
             int N = x.Count;
             for (int k = 0; k < N; k++)
             {
-                double re = 0;
-                double im = 0;
-                for (int n = 0; n < N; n++)
+
+                //double re = 0;
+                //double im = 0;
+                //for (int n = 0; n < N; n++)
+                //{
+                //    double phi = (Math.PI * 2 * k * n) / N;
+                //    re += x[n] * Math.Cos(phi);
+                //    im -= x[n] * Math.Sin(phi);
+                //}
+                //re = re / N;
+                //im = im / N;
+
+                //double freq = k;
+                //double amp = Math.Sqrt(re * re + im * im);
+                //double phase = Math.Atan2(im, re);
+
+                //X.Add(new Epicycle(re, im, freq, amp, phase));
+                
+                double cos = 0.0;
+                double sin = 0.0;
+
+                for (int i = 0; i < x.Count; i++)
                 {
-                    double phi = (Math.PI * 2 * k * n) / N;
-                    re += x[n] * Math.Cos(phi);
-                    im -= x[n] * Math.Sin(phi);
+                    cos += x[i] * Math.Cos(2 * Math.PI * k / x.Count * i);
+                    sin -= x[i] * Math.Sin(2 * Math.PI * k / x.Count * i);
                 }
-                re = re / N;
-                im = im / N;
+
+                cos = cos / x.Count;
+                sin = sin / x.Count;
 
                 double freq = k;
-                double amp = Math.Sqrt(re * re + im * im);
-                double phase = Math.Atan2(im, re);
+                double amp = Math.Sqrt(cos * cos + sin * sin);
+                double phase = Math.Atan2(sin, cos);
 
-                X.Add(new Epicycle(Convert.ToSingle(re), Convert.ToSingle(im), Convert.ToSingle(freq), Convert.ToSingle(amp), Convert.ToSingle(phase)));
+
+
+                X.Add(new Epicycle(1f / x.Count * cos, 1f / x.Count * sin, freq, amp, phase));
             }
+            
             return X.OrderByDescending(n => n.amp).ToList();
         }
 

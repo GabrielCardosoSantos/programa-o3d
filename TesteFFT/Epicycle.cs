@@ -22,5 +22,14 @@ namespace TesteFFT
             this.amp = amp;
             this.phase = phase;
         }
+
+        public Epicycle(double re, double im, double freq, double amp, double phase)
+        {
+            this.re = re;
+            this.im = im;
+            this.freq = freq;
+            this.amp = amp;
+            this.phase = phase;
+        }
     }
 }
